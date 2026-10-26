@@ -15,6 +15,16 @@ public class Calculator implements ActionListener {
     JPanel panel;
     Font myFont = new Font("Ink Free", Font.BOLD, 20);
 
+    Calculator() {
+        //Στήσιμο Παραθύρου
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(450, 600);
+        frame.setLayout(null);
+        
+        textfield = new JTextField();
+        textfield.setBounds(20, 20, 395, 50);
+        textfield.setFont(myFont);
+        textfield.setEditable(false);
 
     JButton equButton, delButton, clrButton;
     JButton cosButton, sinButton, tanButton, logButton;
