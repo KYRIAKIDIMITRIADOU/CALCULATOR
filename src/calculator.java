@@ -7,6 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+public class Calculator implements ActionListener {
+
+    // Βασικά Στοιχεία GUI
+    JFrame frame = new JFrame("Scientific Calculator");
+    JTextField textfield;
+    JPanel panel;
+    Font myFont = new Font("Ink Free", Font.BOLD, 20);
+    
 public static double eval(final String str) {
         return new Object() {
             int pos = -1, ch;
