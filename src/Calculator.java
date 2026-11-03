@@ -1,3 +1,11 @@
+<<<<<<< Updated upstream
+// Επιστημονικά Κουμπιά & Έλεγχος
+JButton[] functionButtons = new JButton[16];
+        JButton equButton, delButton, clrButton, negButton;
+        JButton cosButton, sinButton, tanButton, logButton;
+        JButton piButton, sqrtButton, powButton;
+// 
+=======
 // Αρχικοποίηση Επιστημονικών & Styling
 equButton = new JButton("=");
 delButton = new JButton("Del");
@@ -50,4 +58,5 @@ String string = textfield.getText();
         textfield.setText(string.substring(0, string.length() - 1));
         }
         }
-// 
+//
+>>>>>>> Stashed changes
