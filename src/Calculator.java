@@ -223,3 +223,4 @@ JButton[] functionButtons = new JButton[16];
         JButton cosButton, sinButton, tanButton, logButton;
         JButton piButton, sqrtButton, powButton;
 // 
+
