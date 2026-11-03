@@ -18,13 +18,9 @@ public class Calculator implements ActionListener {
     Font myFont = new Font("Ink Free", Font.BOLD, 20);
 
 
-    // Task 1: Αρχικοποίηση των numberButtons[10] με for-loop και ActionListener
+    //Βασικά Κουμπιά & Αριθμοί
     JButton[] numberButtons = new JButton[10];
-        for (int i = 0; i < 10; i++) {
-        numberButtons[i] = new JButton(String.valueOf(i));
-        numberButtons[i].setFont(myFont);
-        numberButtons[i].addActionListener(this);
-    }
+    JButton addButton, subButton, mulButton, divButton, decButton;
 
         // Επιστημονικά Κουμπιά & Έλεγχος
     JButton[] functionButtons = new JButton[16];
@@ -44,81 +40,90 @@ public class Calculator implements ActionListener {
         textfield.setFont(myFont);
         textfield.setEditable(false);
 
-        // Τοποθέτηση κουμπιών αριθμών (0-9)
-        int[][] coords = {
-                {30, 320}, // 0
-                {30, 250}, {110, 250}, {190, 250}, // 1, 2, 3
-                {30, 180}, {110, 180}, {190, 180}, // 4, 5, 6
-                {30, 110}, {110, 110}, {190, 110}  // 7, 8, 9
-        };
+        //Αρχικοποίηση Βασικών Κουμπιών
+        addButton = new JButton("+");
+        subButton = new JButton("-");
+        mulButton = new JButton("*");
+        divButton = new JButton("/");
+        decButton = new JButton(".");
 
-        for (int i = 0; i <= 9; i++) {
-            numberButtons[i].setBounds(coords[i][0], coords[i][1], 70, 50);
-            frame.add(numberButtons[i]);
+        for (int i = 0; i < 10; ++i) {
+            numberButtons[i] = new JButton(String.valueOf(i));
+            numberButtons[i].addActionListener(this);
+            numberButtons[i].setFont(myFont);
+            numberButtons[i].setFocusable(false);
         }
 
-        // Τοποθέτηση βασικών πράξεων
-        decButton.setBounds(110, 320, 70, 50);
-        addButton.setBounds(270, 250, 70, 50);
-        subButton.setBounds(270, 180, 70, 50);
-        mulButton.setBounds(270, 110, 70, 50);
-        divButton.setBounds(270, 320, 70, 50);
+        // Αρχικοποίηση Επιστημονικών & Styling
+        equButton = new JButton("=");
+        delButton = new JButton("Del");
+        clrButton = new JButton("Clr");
+        negButton = new JButton("(-)");
+        cosButton = new JButton("cos");
+        sinButton = new JButton("sin");
+        tanButton = new JButton("tan");
+        logButton = new JButton("log");
+        piButton = new JButton("pi");
+        sqrtButton = new JButton("sqrt");
+        powButton = new JButton("^");
 
-        frame.add(decButton);
-        frame.add(addButton);
-        frame.add(subButton);
-        frame.add(mulButton);
-        frame.add(divButton);
+        functionButtons[0] = addButton;
+        functionButtons[1] = subButton;
+        functionButtons[2] = mulButton;
+        functionButtons[3] = divButton;
+        functionButtons[4] = decButton;
+        functionButtons[5] = equButton;
+        functionButtons[6] = delButton;
+        functionButtons[7] = clrButton;
+        functionButtons[8] = negButton;
+        functionButtons[9] = cosButton;
+        functionButtons[10] = sinButton;
+        functionButtons[11] = tanButton;
+        functionButtons[12] = logButton;
+        functionButtons[13] = piButton;
+        functionButtons[14] = sqrtButton;
+        functionButtons[15] = powButton;
 
-        frame.setVisible(true);
-    }
-
-    // Αρχικοποίηση Επιστημονικών & Styling
-    equButton = new JButton("=");
-    delButton = new JButton("Del");
-    clrButton = new JButton("Clr");
-    negButton = new JButton("(-)");
-    cosButton = new JButton("cos");
-    sinButton = new JButton("sin");
-    tanButton = new JButton("tan");
-    logButton = new JButton("log");
-    piButton = new JButton("pi");
-    sqrtButton = new JButton("sqrt");
-    powButton = new JButton("^");
-
-    functionButtons[0] = addButton; functionButtons[1] = subButton;
-    functionButtons[2] = mulButton; functionButtons[3] = divButton;
-    functionButtons[4] = decButton; functionButtons[5] = equButton;
-    functionButtons[6] = delButton; functionButtons[7] = clrButton;
-    functionButtons[8] = negButton; functionButtons[9] = cosButton;
-    functionButtons[10] = sinButton; functionButtons[11] = tanButton;
-    functionButtons[12] = logButton; functionButtons[13] = piButton;
-    functionButtons[14] = sqrtButton; functionButtons[15] = powButton;
-
-    Color purpleColor = new Color(128, 0, 128);
+        Color purpleColor = new Color(128, 0, 128);
 
         for (int i = 0; i < 16; ++i) {
-        functionButtons[i].addActionListener(this);
-        functionButtons[i].setFont(myFont);
-        functionButtons[i].setFocusable(false);
-        functionButtons[i].setBackground(purpleColor);
-        functionButtons[i].setForeground(Color.WHITE);
-    }
+            functionButtons[i].addActionListener(this);
+            functionButtons[i].setFont(myFont);
+            functionButtons[i].setFocusable(false);
+            functionButtons[i].setBackground(purpleColor);
+            functionButtons[i].setForeground(Color.WHITE);
+        }
 
-    // Στήσιμο Panel & Εμφάνιση
-    panel = new JPanel();
+        // Στήσιμο Panel & Εμφάνιση
+        panel = new JPanel();
         panel.setBounds(20, 80, 395, 400);
         panel.setLayout(new GridLayout(5, 5, 10, 10));
         panel.setBackground(Color.LIGHT_GRAY);
 
-        panel.add(sinButton); panel.add(cosButton); panel.add(tanButton);
-        panel.add(logButton); panel.add(piButton); panel.add(sqrtButton);
-        panel.add(powButton); panel.add(delButton); panel.add(clrButton);
-        panel.add(divButton); panel.add(numberButtons[7]); panel.add(numberButtons[8]);
-        panel.add(numberButtons[9]); panel.add(mulButton); panel.add(negButton);
-        panel.add(numberButtons[4]); panel.add(numberButtons[5]); panel.add(numberButtons[6]);
-        panel.add(subButton); panel.add(addButton); panel.add(numberButtons[0]);
-        panel.add(numberButtons[1]); panel.add(numberButtons[2]); panel.add(numberButtons[3]);
+        panel.add(sinButton);
+        panel.add(cosButton);
+        panel.add(tanButton);
+        panel.add(logButton);
+        panel.add(piButton);
+        panel.add(sqrtButton);
+        panel.add(powButton);
+        panel.add(delButton);
+        panel.add(clrButton);
+        panel.add(divButton);
+        panel.add(numberButtons[7]);
+        panel.add(numberButtons[8]);
+        panel.add(numberButtons[9]);
+        panel.add(mulButton);
+        panel.add(negButton);
+        panel.add(numberButtons[4]);
+        panel.add(numberButtons[5]);
+        panel.add(numberButtons[6]);
+        panel.add(subButton);
+        panel.add(addButton);
+        panel.add(numberButtons[0]);
+        panel.add(numberButtons[1]);
+        panel.add(numberButtons[2]);
+        panel.add(numberButtons[3]);
         panel.add(decButton);
 
         frame.add(panel);
@@ -126,7 +131,25 @@ public class Calculator implements ActionListener {
         equButton.setBounds(20, 490, 395, 50);
         frame.add(equButton);
         frame.setVisible(true);
+    }
+        public void actionPerformed(ActionEvent e) {
+            String command = e.getActionCommand();
 
+            // Λογική Αριθμών & Βασικών Πράξεων
+            for (int i = 0; i < 10; ++i) {
+                if (e.getSource() == numberButtons[i]) {
+                    textfield.setText(textfield.getText().concat(String.valueOf(i)));
+                    return;
+                }
+            }
+            if (e.getSource() == decButton) {
+                textfield.setText(textfield.getText().concat("."));
+            }
+
+            else if (e.getSource() == addButton || e.getSource() == subButton ||
+                    e.getSource() == mulButton || e.getSource() == divButton || e.getSource() == powButton) {
+                textfield.setText(textfield.getText().concat(command));
+            }
     //  Λογική Επιστημονικών & Ελέγχου
                 else if (e.getSource() == piButton) {
         textfield.setText(textfield.getText().concat(String.valueOf(Math.PI)));
@@ -228,7 +251,7 @@ public static double eval(final String str) {
             } else {
                 throw new RuntimeException("Unexpected: " + (char)ch);
             }
-
+            
             if (eat('^')) x = Math.pow(x, parseFactor()); // Ύψωση σε δύναμη
             return x;
         }
@@ -236,53 +259,9 @@ public static double eval(final String str) {
     }.parse();
 }
 }
-
-
-
-
-
-
-
-public class Calculator {
-    // Κατασκευαστής για τα Βασικά Κουμπιά & Αριθμούς (@ccts!)
-    public Calculator() {
-        frame.setSize(420, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
-
-        // Ρύθμιση πεδίου κειμένου (οθόνης)
-        textfield.setBounds(30, 25, 340, 50);
-        textfield.setFont(myFont);
-        textfield.setEditable(false);
-        frame.add(textfield);
-
-
-
-        // Task 2: Αρχικοποίηση των βασικών πράξεων (+, -, *, /, .)
-        JButton addButton = new JButton("+");
-        JButton subButton = new JButton("-");
-        JButton mulButton = new JButton("*");
-        JButton divButton = new JButton("/");
-        JButton decButton = new JButton(".");
-
-        JButton[] functionButtons = {addButton, subButton, mulButton, divButton, decButton};
-        for (JButton btn : functionButtons) {
-            btn.setFont(myFont);
-            btn.addActionListener(this);
-        }
-
-
-
-    // Task 3: Συγγραφή της λογικής στην actionPerformed για νούμερα και πράξεις
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String command = e.getActionCommand();
-
-        // Όταν πατιέται οποιοδήποτε κουμπί (νούμερο ή πράξη), προστίθεται στην οθόνη
-        textfield.setText(textfield.getText() + command);
-    }
+public static void main(String[] args) {
+    Calculator calc = new Calculator();
 }
-
 
 
 
