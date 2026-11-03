@@ -99,7 +99,7 @@ public class Calculator implements ActionListener {
         textfield.setFont(myFont);
         textfield.setEditable(false);
 
-       // Στήσιμο Panel & Εμφάνιση 👇👇👇
+       // Στήσιμο Panel & Εμφάνιση 
         panel = new JPanel();
         panel.setBounds(20, 80, 395, 400);
         panel.setLayout(new GridLayout(5, 5, 10, 10));
